@@ -115,9 +115,10 @@
         [(eq? (first x) 'NOTT)
          (not (calculate-4(rest x)))]))
 
-(calculate-4 '(AND (GT (ADD 3 4) (MUL 5 6)) (LE (ADD 3 (MUL 4 5)) (SUB 0 (SUB (ADD 3 4) (MUL 5 6)))))) ;; --> #f
+(calculate-4 '(ANND (GT (ADD 3 4) (MUL 5 6)) (LE (ADD 3 (MUL 4 5)) (SUB 0 (SUB (ADD 3 4) (MUL 5 6)))))) ;; --> #f
 (calculate-4 '(ORR (EQ (ADD 3 4) (ADD 6 1)) (NEQ (ADD 3 4) (ADD 6 1)))) ;; --> #t
 (calculate-4 '(NOTT(ORR (EQ (ADD 3 4) (ADD 6 1)) (NEQ (ADD 3 4) (ADD 6 1))))) ;; --> #f
+
 
 ;;; 5. Add IPH
 
