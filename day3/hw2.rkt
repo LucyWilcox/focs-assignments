@@ -32,7 +32,7 @@
 
 (define (calculate-2 x)
   (cond [(number?  x)
-          x]
+         x]
         [(eq? (first x) 'ADD)
          (+ (calculate-2(first(rest x))) (calculate-2(second(rest x))))]
         [(eq? (first x) 'SUB)
@@ -55,7 +55,7 @@
 
 (define (calculate-3 x)
   (cond [(number?  x)
-          x]
+         x]
         [(eq? (first x) 'ADD)
          (+ (calculate-3(first(rest x))) (calculate-3(second(rest x))))]
         [(eq? (first x) 'SUB)
@@ -87,7 +87,7 @@
 
 (define (calculate-4 x)
   (cond [(number?  x)
-          x]
+         x]
         [(eq? (first x) 'ADD)
          (+ (calculate-4(first(rest x))) (calculate-4(second(rest x))))]
         [(eq? (first x) 'SUB)
@@ -123,7 +123,7 @@
 
 (define (calculate-5 x)
   (cond [(number?  x)
-          x]
+         x]
         [(eq? (first x) 'ADD)
          (+ (calculate-5(first(rest x))) (calculate-5(second(rest x))))]
         [(eq? (first x) 'SUB)
@@ -165,7 +165,7 @@
 
 (define (calculate-6 x)
   (cond [(number?  x)
-          x]
+         x]
         [(eq? (first x) '+)
          (+ (calculate-6(first(rest x))) (calculate-5(second(rest x))))]
         [(eq? (first x) '-)
