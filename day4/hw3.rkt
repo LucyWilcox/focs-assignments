@@ -4,9 +4,9 @@
 ;;;
 ;;; Check one:
 ;;; [ ] I completed this assignment without assistance or external resources.
-;;; [ ] I completed this assignment with assistance from ___
+;;; [x] I completed this assignment with assistance from ___
 ;;;     and/or using these external resources: ___
-;;;          
+;;;          https://docs.racket-lang.org/reference/symbols.html
 ;;;          Scheme in one page
 ;;;;;;;;;;;
 ;; 1. assq
@@ -25,7 +25,8 @@
         [else (assq key (rest alst))]))
 
 
-(display (assq "hello2" (list (list "hello" 5) (list "hello2" 6))))
+(display (assq "hello2" '(("hello" 5) ("hello2" 6))))(newline); --> 6
+(display (assq "m"  '(("hello" 5) ("hello2" 6))))(newline) ; --> #f
 
 
 ;;;;;;;;;;;
@@ -36,39 +37,30 @@
 ;; Add the `lookup-list` argument to your hw2 evaluator (or ours, from the solution set).
 ;; `(evaluate 'foo lookup-list)` should return whatever `'foo` is associated with in `lookup-list`.
 
-(define (calculate-5 x)
-  (cond [(number?  x)
-         x]
-        [(eq? (first x) 'ADD)
-         (+ (calculate-5(first(rest x))) (calculate-5(second(rest x))))]
-        [(eq? (first x) 'SUB)
-         (- (calculate-5(first(rest x))) (calculate-5(second(rest x))))]
-        [(eq? (first x) 'MUL)
-         (* (calculate-5(first(rest x))) (calculate-5(second(rest x))))]
-        [(eq? (first x) 'DIV)
-         (/ (calculate-5(first(rest x))) (calculate-5(second(rest x))))]
-        [(eq? (first x) 'GT)
-         (> (calculate-5(first(rest x))) (calculate-5(second(rest x))))]
-        [(eq? (first x) 'LT)
-         (< (calculate-5(first(rest x))) (calculate-5(second(rest x))))]
-        [(eq? (first x) 'GE)
-         (>= (calculate-5(first(rest x))) (calculate-5(second(rest x))))]
-        [(eq? (first x) 'LE)
-         (<= (calculate-5(first(rest x))) (calculate-5(second(rest x))))]
-        [(eq? (first x) 'EQ)
-         (= (calculate-5(first(rest x))) (calculate-5(second(rest x))))]
-        [(eq? (first x) 'NEQ)
-         (not(= (calculate-5(first(rest x))) (calculate-5(second(rest x)))))]
-        [(eq? (first x) 'ANND)
-         (and (calculate-5(first(rest x))) (calculate-5(second(rest x))))]
-        [(eq? (first x) 'ORR)
-         (or (calculate-5(first(rest x))) (calculate-5(second(rest x))))]
-        [(eq? (first x) 'NOTT)
-         (not (calculate-5(rest x)))]
-        [(eq? (first x) 'IPH)
-         (cond [(eq? (calculate-5(first(rest x))) #t)
-                (calculate-5(second(rest x)))]
-               [(eq? (calculate-5(first(rest x))) #f)
-                (calculate-5(second(rest(rest x))))])]
-        [(eq? (first x) 'lookup-list)
-         (assq(
+(define (evaluate x lookup-list)
+  (cond [(symbol? x) (evaluate (assq x lookup-list) lookup-list)]
+        [else
+         (cond [(number?  x) x]
+               [(eq? (first x) 'ADD) (+ (evaluate(first(rest x)) lookup-list) (evaluate(second(rest x)) lookup-list))]
+               [(eq? (first x) 'SUB) (- (evaluate(first(rest x)) lookup-list) (evaluate(second(rest x)) lookup-list))]
+               [(eq? (first x) 'MUL) (* (evaluate(first(rest x)) lookup-list) (evaluate(second(rest x)) lookup-list))]
+               [(eq? (first x) 'DIV) (/ (evaluate(first(rest x)) lookup-list) (evaluate(second(rest x)) lookup-list))]
+               [(eq? (first x) 'GT) (> (evaluate(first(rest x)) lookup-list) (evaluate(second(rest x)) lookup-list))]
+               [(eq? (first x) 'LT) (< (evaluate(first(rest x)) lookup-list) (evaluate(second(rest x)) lookup-list))]
+               [(eq? (first x) 'GE)(>= (evaluate(first(rest x)) lookup-list) (evaluate(second(rest x)) lookup-list))]
+               [(eq? (first x) 'LE) (<= (evaluate(first(rest x)) lookup-list) (evaluate(second(rest x)) lookup-list))]
+               [(eq? (first x) 'EQ) (= (evaluate(first(rest x)) lookup-list) (evaluate(second(rest x)) lookup-list))]
+               [(eq? (first x) 'NEQ) (not(= (evaluate(first(rest x)) lookup-list) (evaluate(second(rest x)) lookup-list)))]
+               [(eq? (first x) 'ANND) (and (evaluate(first(rest x)) lookup-list) (evaluate(second(rest x)) lookup-list))]
+               [(eq? (first x) 'ORR) (or (evaluate(first(rest x)) lookup-list) (evaluate(second(rest x)) lookup-list))]
+               [(eq? (first x) 'NOTT) (not (evaluate(rest x)) lookup-list)]
+               [(eq? (first x) 'IPH)
+                (cond [(eq? (evaluate(first(rest x)) lookup-list) #t)
+                       (evaluate(second(rest x)) lookup-list )]
+                      [(eq? (evaluate(first(rest x)) lookup-list) #f)
+                       (evaluate(second(rest(rest x))) lookup-list)])])]))
+
+(display(evaluate 'y  '((x 3) (y 2) (z -5))))(newline) ;; --> 2
+(display(evaluate '(IPH (GT x 0) x (SUB 0 x)) '((x 3) (y 2) (z -5))))(newline) ; --> 3
+(display(evaluate '(ADD x y) '((x 3) (y 2) (z -5))))(newline) ; --> 5
+(display(evaluate '(IPH (GT z 0) z (SUB 0 z)) '((x 3) (y 2) (z -5))))(newline) ;--> 5
