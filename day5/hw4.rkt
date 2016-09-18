@@ -34,6 +34,7 @@
         [(null? x) x]
         [(symbol? x) (lookup x env)]
         [(eq? (first x) 'DEFINE) (repl (cons (list (second x) (calculate-5 (last x) env)) env))]
+        [(eq? (first x) 'LAMBDA) (list 'CLOSURE (second x) (third x) env)]
         [(eq? (first x) 'ADD)
          (+ (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env))]
         [(eq? (first x) 'SUB)
