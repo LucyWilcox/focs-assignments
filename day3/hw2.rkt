@@ -161,6 +161,17 @@
 (calculate-5 '(IPH (GE (ADD 3 4) 7) (ADD 1 2) (ADD 1 3))) ;; -> 3
 
 
+
+(define (calculate-5 expr env)
+  (cond [(number? expr) expr]   ;; these first three cases are sometimes called
+        [(boolean? expr) expr]  ;; self-evaluating (because they are their own
+        [(null? expr) expr]     ;; values and don't need explicit evaluating)
+        [(symbol? expr) (lookup expr env)]
+        [(IPH-expr? expr) (calculate-IPH expr env)]
+        [(define? expr) (repl (cons (cons (second expr) (calculate-5 (last expr) env))))]
+        [(list? expr) (apply-operator (first expr) (map calculate-5 (rest expr) env))]
+        [else (error `(calculate-5:  not sure what to do with expr ,expr))]))
+
 ;;; 6. Not totally sure if this is what you mean by spelling that is more like scheme's,
 ;;; it this seems to simple for a challenge question, but here's a go at it.
 

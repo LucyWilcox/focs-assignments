@@ -6,6 +6,7 @@
 ;;; [ ] I completed this assignment without assistance or external resources.
 ;;; [ ] I completed this assignment with assistance from ___
 ;;;     and/or using these external resources: ___
+;;;     https://docs.racket-lang.org/reference/pairs.html#%28def._%28%28lib._racket%2Fprivate%2Flist..rkt%29._assq%29%29
 
 (define (apply-operator op args)
   (cond [(eq? op 'ADD) (+ (first args) (second args))]
@@ -23,18 +24,47 @@
         [(eq? op 'NOTT) (not (first args))]
         [else (error "Don't know how to " op)]))
 
-(define (define? lst)
-  (eq? (first lst) 'DEFINE))
+(define (lookup expr env)
+  (cond [(eq? (assq expr env) #f) (error "Not in env")]
+        [else (second (assq expr env))]))
 
-
-(define (calculate-5 expr)
-  (cond [(number? expr) expr]   ;; these first three cases are sometimes called
-        [(boolean? expr) expr]  ;; self-evaluating (because they are their own
-        [(null? expr) expr]     ;; values and don't need explicit evaluating)
-        [(IPH-expr? expr) (calculate-IPH expr)]
-        [(define? expr) 7]
-        [(list? expr) (apply-operator (first expr) (map calculate-5 (rest expr)))]
-        [else (error `(calculate-5:  not sure what to do with expr ,expr))]))
+(define (calculate-5 x env)
+  (cond [(number? x) x]
+        [(boolean? x) x]
+        [(null? x) x]
+        [(symbol? x) (lookup x env)]
+        [(eq? (first x) 'DEFINE) (repl (cons (list (second x) (calculate-5 (last x) env)) env))]
+        [(eq? (first x) 'ADD)
+         (+ (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env))]
+        [(eq? (first x) 'SUB)
+         (- (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env))]
+        [(eq? (first x) 'MUL)
+         (* (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env))]
+        [(eq? (first x) 'DIV)
+         (/ (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env))]
+        [(eq? (first x) 'GT)
+         (> (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env))]
+        [(eq? (first x) 'LT)
+         (< (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env))]
+        [(eq? (first x) 'GE)
+         (>= (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env))]
+        [(eq? (first x) 'LE)
+         (<= (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env))]
+        [(eq? (first x) 'EQ)
+         (= (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env))]
+        [(eq? (first x) 'NEQ)
+         (not(= (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env)))]
+        [(eq? (first x) 'ANND)
+         (and (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env))]
+        [(eq? (first x) 'ORR)
+         (or (calculate-5(first(rest x)) env) (calculate-5(second(rest x)) env))]
+        [(eq? (first x) 'NOTT)
+         (not (calculate-5(rest x)))]
+        [(eq? (first x) 'IPH)
+         (cond [(eq? (calculate-5(first(rest x))) #t)
+                (calculate-5(second(rest x)) env)]
+               [(eq? (calculate-5(first(rest x))) #f)
+                (calculate-5(second(rest(rest x))) env )])]))
 
 (define (IPH-expr? sexpr)
   (and (pair? sexpr) (eq? (first sexpr) 'IPH)))
@@ -50,21 +80,23 @@
       (fourth iph-expr)
       false))
 
-(define (calculate-IPH sexpr)
-  (if (calculate-5 (IPH-TEST sexpr))
-      (calculate-5 (IPH-THEN sexpr))
-      (calculate-5 (IPH-ELSE sexpr))))
+(define (calculate-IPH sexpr env)
+  (if (calculate-5 (IPH-TEST sexpr env))
+      (calculate-5 (IPH-THEN sexpr env))
+      (calculate-5 (IPH-ELSE sexpr env))))
+
+(define starting-env null)
 
 
 (define (run-repl)
   (display "mini-eval")
-  (repl))
+  (repl starting-env))
 
-(define (repl)
+(define (repl env)
   (display "> ")
-  (display (calculate-5 (read)))
+  (display (calculate-5 (read) env))
   (newline)
-  (repl))
+  (repl env))
 
 
 (run-repl)
