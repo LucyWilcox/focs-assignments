@@ -31,6 +31,8 @@ def calc_as_you_go(tokens):
     return n
 
 
+print calc_as_you_go([5, '+', 4, "*", 3, "+", 2])
+
 def calc_rpn(tokens):
     """Full RPN Calculator (uses a stack)
     >>> calc_rpn([1, 2, '+'])
@@ -52,6 +54,8 @@ def calc_rpn(tokens):
             stack.append(x)
     return stack[0]
 
+
+print calc_as_you_go([5, 4, 3, 2 '+', "*", "+"])
 
 def eval_tree(expr):
     """Full tree-walking infix calculator.
