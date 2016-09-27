@@ -1,4 +1,4 @@
-# FOCS Homework for Day 9
+# FOCS Homework for Day 9 (isn't it 8?)
 
 You may edit your answers into this file, or add a separate file in the same directory.
 
@@ -29,7 +29,8 @@ b) All strings with an equal number of occurrences of the substrings `01` and `1
 [010 is in this language; `000110` is in the language; `0101010` is in the language; but `010101` is not.]
 
 Answer:
-This is a regular language. See finite automation image 1b.
+This is a regular language.
+![Image 1b](1b.jpg)
 
 c) All strings (over {0,1}) consisting of a substring _w_ followed by the reverse of the substring.
 
@@ -68,7 +69,8 @@ My pumped string: aaaabbb, that's one loop of the last a to make 4 a's
 For one of the non-regular languages in problem 1 or 2 above, create a PDA (preferably in JFLAP) and include it with your completed homework.
 
 Answer:
-See image 3.
+![image 3](3.jpg)
+This is for 1c.
 
 ## 4. Reading
 
