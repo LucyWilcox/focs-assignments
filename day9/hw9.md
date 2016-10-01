@@ -62,8 +62,6 @@ two:
 
 a. parse trees
 
-![Parse Tree](parsetree.jpg)
-
 b. leftmost derivations (These are the ones that, starting from the start variable, rewrite the leftmost nonterminal first.)
 
 S -> aS -> aaSbS -> aabS -> aab
