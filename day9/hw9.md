@@ -32,13 +32,17 @@ S -> 0S0 -> 01S10 -> 010S010 -> 010e010 -> 010010
 b) All strings (over {a,b,c}) of the form a^{i}b^{i}c^{j}: an equal number of `a`s and `b`s, followed by any number of `c`s. For example, `aabb`, `aabbcc`, and `aabbcccc`, but not `aaaabbcc`.
 
 S -> S1S2
+
 S1 -> aS1b | e
+
 S2 -> c | e
 
 c) All strings (over {a,b,c}) of the form a^{i}b^{j}c^{j}: any number of `a`s, followed by an equal number of `b`s and `c`s. For example, `abbcc`, `aabbcc`, and `aaaabbcc`, but not `aabbccc`.
 
 S -> S1S2
+
 S1 -> aS1 | e
+
 S2 -> bS2c | e
 
 d) Give two distinct grammars that produce the strings described by the regular expression `(ab)*`: empty, `ab`, `abab`, `ababab`, ….
@@ -48,7 +52,9 @@ S -> abS | e
 or 
 
 S -> S1S2 | e
+
 S1 -> a
+
 S2 -> b | bS
 
 ## 4. Ambiguous Grammars
@@ -60,7 +66,7 @@ Consider the grammar:
 This grammar is ambiguous. Show in particular that the string `a a b` has
 two:
 
-a. parse trees
+a. ![parse trees](parsetree.jpg)
 
 b. leftmost derivations (These are the ones that, starting from the start variable, rewrite the leftmost nonterminal first.)
 
