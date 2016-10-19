@@ -19,7 +19,7 @@ For each of the following pairs of functions, identify a multiplier and a minimu
 
 
   A. 367n+1098     and     2n                  [n0 = 40; k=200]
-  B. n^2 + 2n + 6    and     6n^2 - 25
+  B. n^2 + 2n + 6    and     6n^2 - 25	
   C. n^3 + n^2 - 2n     and     6n^2 - 25
   D. 869,438    and    923
   E. 2^n    and    3^n
@@ -28,6 +28,40 @@ For each of the following pairs of functions, identify a multiplier and a minimu
   H. log_10 n^2    and     log_2 n
 
 
+B.
+k = 1
+n0 = 3
+
+Basically after g(n) is positive it grows faster.
+
+C.
+There is no solution, n^3 grows exponentially faster that n^2.
+
+D.
+k = 943
+n0 does not matter so n0 = 0
+
+E.
+k = 1
+n0 = 0
+
+So long as the exponent, n0 = 0, is not negative f(n) <= g(n)will be true at k = 1.
+
+F.
+3^n grows faster than 2^n so there is no solution
+
+G.
+k = 1
+n0 = 1
+
+Where n > 1, g(n) which is log_2(n) is larger by a constant factor than log_10(n).
+
+H. 
+k = 2
+n0 = 1
+
+When g(n) and f(n) are zero or postive (n0 => 1) f(n) <= g(n)*2
+
 II. Linear data structures
 
 For the following problem, assume that it costs 1 unit to access a structure -- an item in an array, a field in a record you are holding, the first element in a linked list -- whether reading or writing that element.  [Accessing the second element in a linked list costs 2 units if you have a pointer to the list:  1 unit to access the first element/read its “next” pointer, and another unit to access the second element.]
@@ -35,16 +69,53 @@ For the following problem, assume that it costs 1 unit to access a structure -- 
 Assume that you have n elements stored in an array and the same n elements stored in a linked list; you have no other references to these data structures.  You may assume that n > 10.  How much does it cost to perform each of the following actions?
 
   A. Read the value of the first element in the array?  In the list?
+
+Array: 1
+LL: 1
+
   B. Read the value of the seventh element in the array?  In the list?
+
+Array: 1
+LL: 7
+
   C. Add an element to the array?  [Where is the cheapest place to add it?]  To the list?  [Where is the cheapest place to add it?]
+
+Array: Adding to end is the cheapest at 1, if you add before the end you nened to shift the array. FIX
+
+LL: Adding to the begining of the linked list is cheapest at 1, just give it a next pointer to the previous first element. Adding the element in some other location costs the same technically to insert, but it's takes O(n) to find the loctation where it should be inserted. If you have a pointer to the tail it would be just a cheap there. 
+
   D. Delete the fifth element from the array?  From the list?
+
+Array: Everything past the fifth element must be moved up by 1  and it costs 1 to delete: n - 6 + 1
+LL: 5, find the location and removing it.
+
   E. Confirm that a particular element -- say x -- is present in the array?  In the list?
+
+Array: n in worst case
+LL: n in worst case
+
   F. Confirm that a particular element -- say y -- is NOT present in the array?  In the list?
+
+Array: n in worst case
+LL: n in worst case
 
 Now assume that you can maintain one extra piece of storage for the data structure.  In the case of the array, you may want to maintain a length reference.
 In the case of the linked list, what would be similarly helpful?
+
+A pointer to the last element.
+
 G. How much would it cost now to add an element to the end of the array?  To add an element to the end of the list?
+
+Array: 1
+LL: 1
+
 H. How much would it cost now to delete an element from the array?  From the list?  What if it were the final element?  The penultimate element?
+
+Array: n - i (regardless of us knowing where the end is we still need to move everything up one place), if it's the last element this is 1, if it's the penultimate element it would be 2. 
+LL: Now it depends on if it is further away from the start or end so either i or n-i, which ever is smaller. Though if there's no way to chose which to start at it would realistically be worse case n.
 
 Finally, assume that both the array and the linked list are sorted, i.e., that their elements are in some predictable order (say, comparable by < or <=).
   J. How much would it cost to confirm that a particular element -- say x -- is present in the array?  In the list?  To confirm that a particular element -- say y -- is not present in the array?  In the list?
+
+Array: use binary sort log n both to check if something is or is not in the array.
+LL: Worse case is still n, though we can check the start and end and see if it's even possible for it to be in the array, likewise if it's not in the array.
