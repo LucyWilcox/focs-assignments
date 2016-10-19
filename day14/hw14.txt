@@ -5,9 +5,9 @@ You may edit your answers into this file, or add a separate file in the same dir
 If you add a separate file, please include the following at the top.
 In either case, add your name and check one of the boxes.
 
-Student Name: Frankly Olin [change to your name]
+Student Name: Lucy Wilcox
 Check one:
-[ ] I completed this assignment without assistance or external resources.
+[x] I completed this assignment without assistance or external resources.
 [ ] I completed this assignment with assistance from ___
     and/or using these external resources: ___
 
@@ -80,8 +80,7 @@ LL: 7
 
   C. Add an element to the array?  [Where is the cheapest place to add it?]  To the list?  [Where is the cheapest place to add it?]
 
-Array: Adding to end is the cheapest at 1, if you add before the end you nened to shift the array. FIX
-
+Array: Adding to end is the cheapest at 1, if you add before the end you nened to shift the array. Actually, it might take n no mater what because seeing as we don't know how long the list is we might need to check through each element to find it.
 LL: Adding to the begining of the linked list is cheapest at 1, just give it a next pointer to the previous first element. Adding the element in some other location costs the same technically to insert, but it's takes O(n) to find the loctation where it should be inserted. If you have a pointer to the tail it would be just a cheap there. 
 
   D. Delete the fifth element from the array?  From the list?
