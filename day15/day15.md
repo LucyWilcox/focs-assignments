@@ -31,7 +31,7 @@ What inequalities must hold in each of these trees?
     T1     T2
 ```
 
-Ans:  all elements of TI <= x <= all elements of T2
+Ans:  all elements of TI <= x <= all elements of T2 <- I assume that x is actually a
 
 ### 1.
 ```
@@ -44,7 +44,7 @@ Ans:  all elements of TI <= x <= all elements of T2
  T1    T2
 ```
 
-Ans:  
+Ans:  all elements of T1 <= c <= all elements T2 <= b <= all elements of T3 
 
 
 
@@ -59,7 +59,7 @@ Ans:
        T2    T3
 ```
 
-Ans:  
+Ans:  all elements of T1 <= d <= all elements of T2 <= e <= all elements of T3 
 
 
 
@@ -77,7 +77,7 @@ Ans:
     T2     T3
 ```
 
-Ans:  
+Ans:  all elements of T1 <= g <= all elements of T2 <= h <= all elements of T3 <= f <= all elements of T4
 
 
 
