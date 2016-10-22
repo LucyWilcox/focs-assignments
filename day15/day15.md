@@ -94,13 +94,13 @@ The relationship among x, y, and z doesn't matter.  For convenience, we've arbit
 '''
 1.
 
-        x
-       / \
-      /   \
-     y      z
-    / \    / \
-   /   \  /   \
- T1    T2 T3   T4
+           x
+          /  \
+         /    \
+        y       z
+       / \     /  \
+      /   \   /    \
+    T1    T2  T3    T4  
 
 T1 <= y <= T2 <=y <= T3 <= z <= T4
 
@@ -136,16 +136,18 @@ T1 <= x <= T2 <= y <= T3 <= z <= T4
 
 4.
 
-           x
-          / \
-         /   \
-        y    T4
+              x
+             / \
+            /   \
+           y    T4
+          /  \
+         /    \
+        z     T3 
        /  \
       /    \
-     z     T3 
-    /   \
-   /     \
-  T1     T2  
+     T1     T2
+ 
+  
 
 T1 <= z <= T2 <= y <= T3 <= x <= T4
 
