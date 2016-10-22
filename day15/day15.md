@@ -6,9 +6,9 @@ You may edit your answers into this file, or add a separate file in the same dir
 If you add a separate file, please include the following at the top:
 
 ```
-Student Name: Frankly Olin [change to your name]
+Student Name: Lucy Wilcox
 Check one:
-[ ] I completed this assignment without assistance or external resources.
+[X] I completed this assignment without assistance or external resources.
 [ ] I completed this assignment with assistance from ___
    and/or using these external resources: ___
 ```
@@ -274,7 +274,7 @@ For EVERY internal node (x and y), the depth of the internal node's left subtree
                  18
 ```
 
-
+The 6 leaf and 14 leaf have depths that differ by only one, so it's almost balanced.
 
 ### 8. 
 
@@ -294,10 +294,14 @@ Insert the value 4 into the tree.  Where does it go?  Is the resulting tree almo
 
 Use the work you've done above to rebalance the tree.  Start at the newly inserted value; work up until you find an internal node that has left and right children whose depth differs by more than one.  Rebalance that subtree using the processes you created in #6.  Continue to climb the tree, rebalancing any unbalanced (not almost-balanced) nodes as you go up.
 
+![8, 9, 10, 11](1022161541-1.jpg)
+
 
 ### 12. 
 
 [Challenge] Assuming that a tree is almost-balanced when you make an insertion, and that that insertion may violate the almost-balanced property, can almost-balance always be restored solely by climbing the  path from the newly inserted node to the root?  Will you ever have to descend another branch?  Why or why not?
+
+My gut says no, but I'm not sure exactly why.
 
 
 
