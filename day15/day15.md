@@ -91,7 +91,63 @@ The relationship among x, y, and z doesn't matter.  For convenience, we've arbit
 
 
 
+'''
+1.
+        x
+       / \
+      /   \
+     y     z
+    / \    |  \
+   /   \   |   \
+ T1    T2  T3   T4
 
+T1 <= y <= T2 <=y <= T3 <= z <= T4
+
+2.
+
+        x
+       / \
+      /   \
+     T1    y
+          /  \
+         /    \
+        z     T4
+      /   \
+     /     \
+    T2     T3
+    
+ T1 <= x <= T2 <= z <= T3 <= y <= T4
+ 
+ 3.
+
+        x
+       / \
+      /   \
+     T1    y
+          /  \
+         /    \
+        T2     z     
+             /   \
+            /     \
+           T3     T4
+
+T1 <= x <= T2 <= y <= T3 <= z <= T4
+
+4.
+        x
+       / \
+      /   \
+     y    T4
+    /  \
+   /    \
+  z     T3 
+ /   \
+/     \
+T1     T2  
+
+T1 <= z <= T2 <= y <= T3 <= x <= T4
+
+'''
 
 
 <expand as needed>
@@ -111,6 +167,8 @@ For EVERY internal node (x and y), the depth of the internal node's left subtree
 
 Does this property hold for any of the three-internal-node trees?  Which ones?  Which ones are NOT almost-balanced?  (We call these unbalanced.)
 
+1 (in the previous question) is the only balanced subtree with 3 internal nodes.
+
 
 ## IV.  Maintaining balance
 
@@ -124,7 +182,11 @@ If you are given a binary tree of the form in question 1, you can transform them
 
 Use this insight to show how to modify each of the unbalanced tree forms with three internal nodes into an almost-balanced tree that preserves the binary search property.
 
+'''
 
+
+
+'''
 
 
 ## V.  Rebalancing
