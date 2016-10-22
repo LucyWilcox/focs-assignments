@@ -91,7 +91,7 @@ The relationship among x, y, and z doesn't matter.  For convenience, we've arbit
 
 
 
-'''
+```
 1.
 
            x
@@ -151,7 +151,7 @@ T1 <= x <= T2 <= y <= T3 <= z <= T4
 
 T1 <= z <= T2 <= y <= T3 <= x <= T4
 
-'''
+```
 
 
 <expand as needed>
@@ -186,11 +186,68 @@ If you are given a binary tree of the form in question 1, you can transform them
 
 Use this insight to show how to modify each of the unbalanced tree forms with three internal nodes into an almost-balanced tree that preserves the binary search property.
 
-'''
+```
+Q3. 
+
+    
+          h
+         / \
+        /   \
+       /     \
+     g        f
+    / \      / \
+   /   \    /   \
+  T1    T2  T3    T4
+
+Ans:  all elements of T1 <= g <= all elements of T2 <= h <= all elements of T3 <= f <= all elements of T4
+
+Q4.
+1. Already balanced
+
+2. Balances to:
+
+          z
+         / \
+        /   \
+       /     \
+     x        y
+    / \      / \
+   /   \    /   \
+  T1    T2  T3    T4
+    
+ T1 <= x <= T2 <= z <= T3 <= y <= T4
+ 
+ 
+  3. Balances too:
+  
+          y
+         / \
+        /   \
+       /     \
+     x        z
+    / \      / \
+   /   \    /   \
+  T1    T2  T3    T4
 
 
+T1 <= x <= T2 <= y <= T3 <= z <= T4
 
-'''
+4. Balances too:
+
+
+          y
+         / \
+        /   \
+       /     \
+     z        x
+    / \      / \
+   /   \    /   \
+  T1    T2  T3    T4
+
+
+T1 <= z <= T2 <= y <= T3 <= x <= T4
+
+```
 
 
 ## V.  Rebalancing
