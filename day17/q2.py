@@ -1,7 +1,6 @@
 '''
-#1
-Changed the original code to add Node class, with parent
-and simplify by using a list as a queue.
+#2
+distance add, a few checks at the end
 
 '''
 
