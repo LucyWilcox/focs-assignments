@@ -10,3 +10,9 @@ likes(amy, tyrion).
 likes(tyrion, amy).
 likes(susan, tyrion).
 likes(tyrion, susan).
+
+mutual(A, B) :- likes(A, B), likes(B, A).
+
+popular(A) :- likes(B, A), likes(C, A), likes(D, A), B != C, C != D, B != D.
+
+narrisist(A) :- likes(A, A).
